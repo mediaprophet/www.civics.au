@@ -1,4 +1,5 @@
 {
+  "formatNote": "Authoring SoT is application/yaml-ld-q42 (HCF HypermediaDocument). Markdown under articles/*.md is an optional projector.",
   "articles": [
     {
       "slug": "civic-vs-civics",
@@ -6,7 +7,10 @@
       "date": "2026-09-26",
       "author": "Timothy Holborn",
       "summary": "Why Civics.au speaks the language of citizenship and citizen-led public-good work — not government employment.",
-      "tags": ["language", "civics"]
+      "tags": ["language", "civics"],
+      "source": "articles/civic-vs-civics.yaml-ld-q42",
+      "format": "yaml-ld-q42",
+      "projector": "articles/civic-vs-civics.md"
     },
     {
       "slug": "from-survive-to-do",
@@ -14,7 +18,10 @@
       "date": "2026-09-20",
       "author": "Civics.au",
       "summary": "The human purpose behind Walkabout, grounds, Databox and knowledge banks — practical civics infrastructure.",
-      "tags": ["purpose", "walkabout", "grounds"]
+      "tags": ["purpose", "walkabout", "grounds"],
+      "source": "articles/from-survive-to-do.yaml-ld-q42",
+      "format": "yaml-ld-q42",
+      "projector": "articles/from-survive-to-do.md"
     }
   ]
 }

@@ -1,0 +1,50 @@
+# Format: Hypermedia Content Format (HCF) v1.0 (yaml-ld-q42)
+# Media type: application/yaml-ld-q42
+"@context":
+  "@vocab": "https://qualiadb.org/schema/hcf#"
+  "schema": "https://schema.org/"
+  "civics": "https://www.civics.au/ns#"
+
+"@id": "https://www.civics.au/article.html?slug=from-survive-to-do"
+"@type": "HypermediaDocument"
+"title": "From survive today to do today"
+"schema:datePublished": "2026-09-20"
+"schema:author": "Civics.au"
+"schema:description": "The human purpose behind Walkabout, grounds, Databox and knowledge banks — practical civics infrastructure."
+"civics:tags":
+  - purpose
+  - walkabout
+  - grounds
+"civics:voice": "civics"
+
+"content":
+  - "@type": "Section"
+    "heading": "The human purpose"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "From “How am I going to survive today?” to “What am I going to do today?”"
+      - "@type": "Paragraph"
+        "text": "That shift is the north star for the connected proposals under Civics.au."
+
+  - "@type": "Section"
+    "heading": "Separate parts, one ecosystem"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "Walkabout — a supported pathway into a second-hand home on wheels."
+      - "@type": "Paragraph"
+        "text": "Community grounds — regional places with amenities, energy, connectivity and workshops."
+      - "@type": "Paragraph"
+        "text": "Databox — organisation-run vaults that connect to people’s own records with clear, reviewable sharing."
+      - "@type": "Paragraph"
+        "text": "Knowledge banks — cooperatives that host shared machinery for continuity and fiduciary care of members’ records."
+      - "@type": "Paragraph"
+        "text": "Each piece can stand alone. Together they compound — without asking people to surrender their whole digital life to one platform."
+
+  - "@type": "Section"
+    "heading": "Start with public benefit"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "Ask what problem is being solved, what information is truly needed, who is responsible, how people get help, how fairness is checked, and what happens if the service stops. Technology follows those answers; it does not replace them."
+
+"projectors":
+  markdown: "/articles/from-survive-to-do.md"

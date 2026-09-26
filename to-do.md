@@ -1,25 +1,26 @@
 # Todo — www.civics.au
 
-## Articles / writing (shipped v0)
+## Articles / writing
 
-- [x] Home Writing section listing YAML+MD articles
+- [x] Home Writing section listing articles
 - [x] Per-article page (`article.html?slug=…`)
-- [x] Convention: `articles/*.md` (YAML frontmatter) + `articles/manifest.json`
-- [ ] Optional: generate `manifest.json` from frontmatter at build time (avoid dual edit)
-- [ ] Richer Markdown (blockquotes, tables, fenced code) if content needs it
+- [x] **SoT:** `application/yaml-ld-q42` HCF `HypermediaDocument` under `articles/*.yaml-ld-q42` (QualiaDB `docs/manuals/standards/yaml-ld-q42-specification.md` + `hypermedia-content-format-hcf.md`)
+- [x] Markdown `articles/*.md` kept as optional projector (not the authoring language)
+- [x] `manifest.json` points at yaml-ld-q42 `source` + md `projector`
+- [ ] Optional: generate `manifest.json` from yaml-ld-q42 front matter at build time
+- [ ] Richer Markdown projector (blockquotes, tables, fenced code) if needed
 - [ ] RSS / Atom feed from the manifest
 
-## QualiaDB / webcivics-wasm (gaps to improve)
+## QualiaDB / webcivics-wasm (0.0.40-dev)
 
-Timothy noted a **webcivics-wasm** build of QualiaDB can help drive YAML/MD articles. Current site uses a **static Pages-safe path** (fetch MD + light client parse). It does **not** yet load QualiaDB WASM.
+Profile: **`webizen-lite-wasm`** (`qualia-core-db` feature `wasm-ontology`) on branch `0.0.40-dev`.
 
 Tracked gaps / follow-ups:
 
-1. **Locate & pin the artifact** — publish or vendor the licensed `wasm-webcivics` / portal profile build intended for browser Pages (`qualia_webcivics_bg.wasm` + glue, or `webizen-lite-wasm` / portal feature from `mediaprophet/qualiaDB`). Digest-pin like Solid-CSS-Databox does.
-2. **Article ingest API** — WASM helpers to parse YAML frontmatter + Markdown (or N3/RDF equivalents) into quins/graph so Writing is queryable, not only listed.
-3. **Client index** — replace or augment `manifest.json` with an in-browser Qualia index (tag/date/full-text) without a Node build on Pages.
-4. **Offline / installable** — optional PWA + persistent local store for reading packs when network is poor (grounds / Walkabout contexts).
-5. **Field-of-use licence boundary** — keep MIT/site chrome separate from proprietary wasm-webcivics binary; document load path in README before shipping WASM on www.civics.au.
-6. **Capability profile** — confirm Pages needs `portal` vs ontology-lite; avoid pulling GPU/LLM features into the public marketing site.
+1. **[in flight]** Expose `load_yaml_ld_q42` / HCF ingest on webizen-lite-wasm (compile workspace + HypermediaDocument → session Quins) — Neo tip on `civics-yaml-ld-q42` when green.
+2. **Pin the artifact** — vendor digest-pinned `webizen_lite_wasm` pkg for Pages (CC BY-NC-ND binary; keep MIT/site chrome separate; document in README).
+3. **Client index** — optional in-browser Qualia index (tag/date/full-text) via WASM; static manifest remains the live list until then.
+4. **Offline / installable** — optional PWA + local store for reading packs.
+5. **Capability profile** — Pages stays ontology-lite; do not pull portal/GPU/LLM into the public marketing site.
 
-Until those land, keep the static YAML+MD path as the live Writing surface.
+Until WASM is vendored, the static yaml-ld-q42 + Markdown-projector path is the live Writing surface.

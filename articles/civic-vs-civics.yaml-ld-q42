@@ -1,0 +1,48 @@
+# Format: Hypermedia Content Format (HCF) v1.0 (yaml-ld-q42)
+# Media type: application/yaml-ld-q42
+# Markdown remains an optional projector (see articles/*.md).
+"@context":
+  "@vocab": "https://qualiadb.org/schema/hcf#"
+  "schema": "https://schema.org/"
+  "civics": "https://www.civics.au/ns#"
+
+"@id": "https://www.civics.au/article.html?slug=civic-vs-civics"
+"@type": "HypermediaDocument"
+"title": "Civic is not civics"
+"schema:datePublished": "2026-09-26"
+"schema:author": "Timothy Holborn"
+"schema:description": "Why Civics.au speaks the language of citizenship and citizen-led public-good work — not government employment."
+"civics:tags":
+  - language
+  - civics
+"civics:voice": "civics"  # citizenship / public-good — not civic (government)
+
+"content":
+  - "@type": "Section"
+    "heading": "A small word with a big fork"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "On this site, civic means government and related employees or institutions."
+      - "@type": "Paragraph"
+        "text": "Civics means citizenship — and the work people do, as citizens, on public-good and for-purpose projects."
+      - "@type": "Paragraph"
+        "text": "They are related. They are not the same. Mixing them turns a citizen project into something that sounds like an agency portal."
+
+  - "@type": "Section"
+    "heading": "What Civics.au is for"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "Civics.au is owned and operated by Timothy Holborn as part of WebCivics. It gathers citizen-facing proposals and tools: Databox, Walkabout, community grounds, knowledge banks, and the writing that explains them in plain language."
+      - "@type": "Paragraph"
+        "text": "It is not a government service. It does not speak as a civic agency."
+
+  - "@type": "Section"
+    "heading": "Why the distinction matters"
+    "blocks":
+      - "@type": "Paragraph"
+        "text": "When language collapses, people lose the map: citizens become users of civic systems they did not authorise; volunteer and cooperative work gets misread as state service delivery; accountability paths blur."
+      - "@type": "Paragraph"
+        "text": "Keeping civics clear keeps the work honest: citizen-led, reviewable, and built for public good without pretending to be government."
+
+"projectors":
+  markdown: "/articles/civic-vs-civics.md"
