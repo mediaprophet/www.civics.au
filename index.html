@@ -1,38 +1,85 @@
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Civics.au — citizenship & public-good work</title>
-<meta name="description" content="Civics.au is for citizenship and citizen-led public-good work — not a government (civic) agency portal. Owned and operated by Timothy Holborn as part of WebCivics."/>
-<style>
-  :root { color-scheme: light dark; --ink:#0f172a; --mute:#475569; --bg:#f8fafc; --accent:#0d9488; }
-  @media (prefers-color-scheme: dark) {
-    :root { --ink:#e2e8f0; --mute:#94a3b8; --bg:#0b1220; --accent:#2dd4bf; }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; font: 16px/1.5 system-ui, sans-serif;
-    color: var(--ink); background: var(--bg);
-    display: grid; place-items: center; padding: 2rem;
-  }
-  main { max-width: 36rem; }
-  h1 { font-size: 1.75rem; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
-  p { margin: 0 0 1rem; color: var(--mute); }
-  .note {
-    font-size: 0.9rem; padding: 0.75rem 1rem; border-radius: 0.75rem;
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
-  }
-  code { font-size: 0.85em; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Civics.au — citizenship &amp; public-good work</title>
+  <meta name="description" content="Civics.au is for citizenship and citizen-led public-good work — not a government (civic) agency portal. Owned and operated by Timothy Holborn as part of WebCivics." />
+  <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
-<main>
-  <h1>Civics.au</h1>
-  <p>Citizenship and citizen-led public-good work. Not a government service or civic-agency portal.</p>
-  <p class="note">Scaffold for GitHub Pages — visual SoT landing from monet next. Databox · Walkabout · grounds · knowledge banks.</p>
-  <p><small>Owned and operated by Timothy Holborn · WebCivics</small></p>
-</main>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="/"><strong>Civics.au</strong><span>WebCivics</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="kicker">Civics · not civic</p>
+      <h1 id="hero-title">Civics, from the ground up.</h1>
+      <p class="lede">Citizenship and citizen-led public-good work — places to land, fair exchange, and infrastructure communities can host without surrendering agency.</p>
+      <p class="voice"><strong>civic</strong> = government &amp; related employees · <strong>civics</strong> = citizenship &amp; citizen public-good work. This site speaks <strong>civics</strong> only — never as a government or civic-agency portal.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#writing">Read the writing</a>
+        <a class="btn btn-ghost" href="#projects">Explore projects</a>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Connected proposals</h2>
+      <p class="section-lead">Soft-rise into the living work. Each card is citizen-facing — not a civic service desk.</p>
+      <div class="card-grid">
+        <a class="card" href="https://web.civics.au/" rel="noopener noreferrer">
+          <span class="meta">Exchange</span>
+          <h3>Databox</h3>
+          <p>Organisation vaults with clear, reviewable sharing — information people can understand and control.</p>
+        </a>
+        <a class="card" href="https://dev.civics.au/" rel="noopener noreferrer">
+          <span class="meta">Pathway</span>
+          <h3>Walkabout</h3>
+          <p>A supported route into a second-hand home on wheels — suitability, costs, repairs, somewhere legal to stay.</p>
+        </a>
+        <a class="card" href="https://dev.civics.au/" rel="noopener noreferrer">
+          <span class="meta">Place</span>
+          <h3>Community grounds</h3>
+          <p>Regional grounds with amenities, solar, connectivity and workshops — generative infrastructure, not extraction.</p>
+        </a>
+        <a class="card" href="https://dev.civics.au/" rel="noopener noreferrer">
+          <span class="meta">Stewardship</span>
+          <h3>Knowledge banks</h3>
+          <p>Cooperatives holding shared machinery for continuity and fiduciary care — members stay principals of their records.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="writing" aria-labelledby="writing-title">
+      <h2 id="writing-title">Writing</h2>
+      <p class="section-lead">Articles and notes as YAML frontmatter + Markdown files. Add a <code>.md</code> under <code>/articles/</code> and list it in the manifest.</p>
+      <div id="articles-list" class="articles-list" aria-live="polite"></div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p class="section-lead">Civics.au is owned and operated by Timothy Holborn as part of his WebCivics initiative. Source content and concepts draw from <a href="https://dev.civics.au/" rel="noopener noreferrer">dev.civics.au</a> and <a href="https://web.civics.au/" rel="noopener noreferrer">web.civics.au</a>.</p>
+      <p class="section-lead">Not a government service. Demonstrations and concept notes use open, reviewable framing — never civic-agency tone.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© Timothy Holborn · WebCivics · <a href="https://github.com/mediaprophet/www.civics.au">Source</a></p>
+      <p>Language lock: civic ≠ civics. See <a href="/to-do.md">to-do.md</a> for QualiaDB WASM follow-ups.</p>
+    </div>
+  </footer>
+
+  <script src="/js/articles.js"></script>
+  <script>CivicsArticles.renderList("#articles-list");</script>
 </body>
 </html>

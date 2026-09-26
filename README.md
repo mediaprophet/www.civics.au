@@ -1,16 +1,38 @@
 # www.civics.au
 
-Public site for **[Civics.au](https://www.civics.au)** — citizenship and citizen-led public-good work (not a government / civic-agency portal).
+Public site for **Civics.au** — citizenship and citizen-led public-good work (WebCivics / Timothy Holborn).
 
-Owned and operated by Timothy Holborn as part of [WebCivics](https://webcivics.org).
+**Not** a government or civic-agency portal.
 
-## Deploy
+- **civic** = government & related employees / institutions  
+- **civics** = citizenship & citizen-led public-good work  
 
-GitHub Pages serves from `main` `/` (root).
+## Stack
 
-Custom domain: `www.civics.au` (`CNAME` in repo). Point DNS accordingly (and apex `civics.au` if desired).
+Static GitHub Pages (`main` `/`). No build required for Writing.
 
-## Copy lock
+## Add an article
 
-- **civics** = citizenship, citizen-led public-good work
-- **civic** = government and related employees — do not frame this site as that
+1. Create `articles/your-slug.md` with YAML frontmatter:
+
+```md
+---
+title: Your title
+date: 2026-09-26
+author: Name
+summary: One-line excerpt
+tags: [civics, example]
+---
+
+## Heading
+
+Body in Markdown.
+```
+
+2. Append an entry to `articles/manifest.json` (`slug` must match the filename without `.md`).
+
+3. Commit to `main`. Pages updates shortly after.
+
+## QualiaDB WASM
+
+See [to-do.md](./to-do.md) for webcivics-wasm / QualiaDB follow-ups. Live Writing does not depend on WASM yet.

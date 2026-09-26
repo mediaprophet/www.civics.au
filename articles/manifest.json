@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "slug": "civic-vs-civics",
+      "title": "Civic is not civics",
+      "date": "2026-09-26",
+      "author": "Timothy Holborn",
+      "summary": "Why Civics.au speaks the language of citizenship and citizen-led public-good work — not government employment.",
+      "tags": ["language", "civics"]
+    },
+    {
+      "slug": "from-survive-to-do",
+      "title": "From survive today to do today",
+      "date": "2026-09-20",
+      "author": "Civics.au",
+      "summary": "The human purpose behind Walkabout, grounds, Databox and knowledge banks — practical civics infrastructure.",
+      "tags": ["purpose", "walkabout", "grounds"]
+    }
+  ]
+}
