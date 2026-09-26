@@ -1,5 +1,9 @@
 # Todo — www.civics.au
 
+## Site status
+
+- [x] **In development** banner + `/in-development.html` (AI-assisted work, failure modes, nominal budget)
+
 ## Articles / writing
 
 - [x] Home Writing section listing articles
