@@ -87,7 +87,7 @@
       el.innerHTML = items.map(function (a) {
         const tags = (a.tags || []).map(function (t) { return '<span class="tag">' + escapeHtml(t) + "</span>"; }).join("");
         return (
-          '<article class="article-card">' +
+          '<article class="article-card soft-rise">' +
             '<div class="byline">' + escapeHtml(formatDate(a.date)) + (a.author ? " · " + escapeHtml(a.author) : "") + "</div>" +
             "<h3><a href=\"/article.html?slug=" + encodeURIComponent(a.slug) + "\">" + escapeHtml(a.title) + "</a></h3>" +
             (a.summary ? '<p class="excerpt">' + escapeHtml(a.summary) + "</p>" : "") +
