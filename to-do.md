@@ -2,6 +2,7 @@
 
 ## Site status
 
+- [ ] Dedicated www.civics.au human-contact / “does this look right?” form (interim: link to [dev.civics.au EOI](https://dev.civics.au/eoi.html))
 - [x] **In development** banner + `/in-development.html` (AI-assisted work, failure modes, nominal budget)
 
 ## Articles / writing
