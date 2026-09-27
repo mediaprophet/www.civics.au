@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "civics": "https://www.civics.au/ns/problem#",
+    "ProblemReport": "civics:ProblemReport",
+    "problems": "civics:problems",
+    "severity": "civics:severity",
+    "status": "civics:status",
+    "affectedPage": "civics:affectedPage",
+    "summary": "description",
+    "title": "name",
+    "dateFlagged": "dateCreated",
+    "flaggedBy": "creator"
+  },
+  "@type": "ProblemReport",
+  "title": "Example known problem (sample)",
+  "summary": "Demonstration report for the known-problem page. Replace with a real JSON-LD file when flagging a live issue.",
+  "dateFlagged": "2026-09-27",
+  "flaggedBy": "Timothy Holborn",
+  "status": "open",
+  "affectedPage": "https://www.civics.au/",
+  "problems": [
+    {
+      "@type": "Issue",
+      "name": "Sample inverted framing",
+      "description": "Placeholder: content may state the opposite of author intent until reviewed.",
+      "severity": "medium",
+      "status": "open"
+    }
+  ]
+}

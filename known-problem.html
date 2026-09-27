@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Known problem — Civics.au</title>
+  <meta name="description" content="Flagged problem on Civics.au. Load a JSON-LD (RDF) problem report via ?report= URL. Active development — ask a human if unsure." />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <a class="dev-banner" href="/in-development.html">
+    <span class="dev-banner-label">In development</span>
+    <span class="dev-banner-hint">AI-assisted work · nominal budget · read how this is built</span>
+  </a>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="/"><strong>Civics.au</strong><span>WebCivics</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/#projects">Projects</a>
+        <a href="/#writing">Writing</a>
+        <a href="/#about">About</a>
+        <a href="/in-development.html">In development</a>
+        <a href="/known-problem.html" aria-current="page">Known problem</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap article-page">
+    <header>
+      <p class="kicker">Flag</p>
+      <h1 id="report-title">Known problem</h1>
+      <p class="byline status" id="report-status">Open · under development · human review needed</p>
+    </header>
+
+    <div class="problem-banner" role="status">
+      <strong>This page marks an identified problem</strong> that still needs to be addressed. It is a flag for later fix-work, not a claim that the issue is resolved.
+    </div>
+
+    <article class="prose">
+      <p id="report-summary">Load a problem report with <code>?report=</code> pointing at a JSON-LD (RDF) file, or use the sample below.</p>
+
+      <section id="problems-mount" aria-labelledby="problems-heading">
+        <h2 id="problems-heading">Identified problems</h2>
+        <ul id="problems-list" class="problem-list"></ul>
+        <p id="problems-empty" class="status" hidden>No problem items were found in the report.</p>
+      </section>
+
+      <h2>How to flag a page</h2>
+      <ol>
+        <li>Write a short JSON-LD report (see sample shape below) and host it under <code>/problems/</code> or any HTTPS URL this site can fetch.</li>
+        <li>Link the broken or doubtful page to this view with the report in the query string, for example:<br />
+          <code class="block-code">/known-problem.html?report=/problems/your-issue.jsonld</code>
+        </li>
+        <li>Optionally add <code>&amp;page=</code> with the affected URL if it is not already inside the JSON-LD.</li>
+      </ol>
+      <p>Example with the sample file: <a href="/known-problem.html?report=/problems/sample.jsonld"><code>/known-problem.html?report=/problems/sample.jsonld</code></a></p>
+
+      <h2>About this work</h2>
+      <p>Civics.au is in active development with AI support under a nominal budget. Known failure modes, human responsibility, and how to contact a person are described on the <a href="/in-development.html">in development</a> notice. If you are not sure whether what you are seeing looks right, <a href="https://dev.civics.au/eoi.html" rel="noopener noreferrer">contact a human via the EOI form</a>.</p>
+
+      <p id="report-meta" class="status"></p>
+      <p><a href="/in-development.html">← In development</a> · <a href="/">Home</a></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© Timothy Holborn · WebCivics · <a href="https://github.com/mediaprophet/www.civics.au">Source</a></p>
+      <p>Language lock: civic ≠ civics. Status: <a href="/in-development.html">in development</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var reportUrl = params.get("report") || params.get("rdf") || params.get("jsonld");
+    var pageOverride = params.get("page");
+    var titleEl = document.getElementById("report-title");
+    var statusEl = document.getElementById("report-status");
+    var summaryEl = document.getElementById("report-summary");
+    var listEl = document.getElementById("problems-list");
+    var emptyEl = document.getElementById("problems-empty");
+    var metaEl = document.getElementById("report-meta");
+
+    function text(v) {
+      if (v == null) return "";
+      if (typeof v === "string" || typeof v === "number") return String(v);
+      if (Array.isArray(v)) return v.map(text).filter(Boolean).join(", ");
+      if (typeof v === "object") {
+        return text(v.name || v.title || v.description || v["@value"] || v["@id"] || "");
+      }
+      return "";
+    }
+
+    function asArray(v) {
+      if (v == null) return [];
+      return Array.isArray(v) ? v : [v];
+    }
+
+    function pick(obj, keys) {
+      for (var i = 0; i < keys.length; i++) {
+        if (obj[keys[i]] != null && obj[keys[i]] !== "") return obj[keys[i]];
+      }
+      return null;
+    }
+
+    function render(data, sourceUrl) {
+      var title = text(pick(data, ["title", "name", "headline"])) || "Known problem";
+      var summary = text(pick(data, ["summary", "description", "abstract"]));
+      var status = text(pick(data, ["status", "civics:status"])) || "open";
+      var flagged = text(pick(data, ["dateFlagged", "dateCreated", "datePublished"]));
+      var by = text(pick(data, ["flaggedBy", "creator", "author"]));
+      var affected = pageOverride || text(pick(data, ["affectedPage", "url", "mainEntityOfPage"]));
+
+      titleEl.textContent = title;
+      document.title = title + " — Civics.au";
+      statusEl.textContent = status + (flagged ? " · flagged " + flagged : "") + (by ? " · " + by : "");
+      if (summary) summaryEl.textContent = summary;
+
+      var items = asArray(pick(data, ["problems", "hasPart", "itemListElement"]) || []);
+      // flatten ItemList style
+      items = items.map(function (it) {
+        return it && it.item ? it.item : it;
+      }).filter(Boolean);
+
+      listEl.innerHTML = "";
+      if (!items.length && summary) {
+        // single-issue report with no nested list
+        items = [{ name: title, description: summary, severity: pick(data, ["severity"]), status: status }];
+      }
+      if (!items.length) {
+        emptyEl.hidden = false;
+      } else {
+        emptyEl.hidden = true;
+        items.forEach(function (it) {
+          var li = document.createElement("li");
+          var h = document.createElement("strong");
+          h.textContent = text(pick(it, ["name", "title", "headline"])) || "Issue";
+          li.appendChild(h);
+          var sev = text(pick(it, ["severity"]));
+          var st = text(pick(it, ["status"]));
+          if (sev || st) {
+            var meta = document.createElement("span");
+            meta.className = "problem-meta";
+            meta.textContent = [sev && ("severity: " + sev), st && ("status: " + st)].filter(Boolean).join(" · ");
+            li.appendChild(document.createTextNode(" "));
+            li.appendChild(meta);
+          }
+          var desc = text(pick(it, ["description", "summary", "text"]));
+          if (desc) {
+            var p = document.createElement("p");
+            p.textContent = desc;
+            li.appendChild(p);
+          }
+          listEl.appendChild(li);
+        });
+      }
+
+      var bits = [];
+      if (sourceUrl) bits.push("Report source: " + sourceUrl);
+      if (affected) bits.push("Affected page: " + affected);
+      metaEl.textContent = bits.join(" · ");
+      if (affected) {
+        var a = document.createElement("a");
+        a.href = affected;
+        a.textContent = affected;
+        a.rel = "noopener noreferrer";
+        metaEl.textContent = (sourceUrl ? ("Report source: " + sourceUrl + " · ") : "") + "Affected page: ";
+        metaEl.appendChild(a);
+      }
+    }
+
+    function fail(msg) {
+      summaryEl.textContent = msg;
+      emptyEl.hidden = false;
+      emptyEl.textContent = "Could not load a problem report. Check the ?report= URL (JSON-LD / RDF).";
+    }
+
+    if (!reportUrl) {
+      summaryEl.innerHTML = "No <code>?report=</code> was provided. Use this page as a stamp on a broken surface once a JSON-LD report exists, or open the <a href=\"/known-problem.html?report=/problems/sample.jsonld\">sample report</a>.";
+      metaEl.textContent = "Link from in-development: /in-development.html";
+      return;
+    }
+
+    // allow relative paths
+    var fetchUrl = reportUrl;
+    fetch(fetchUrl, { headers: { Accept: "application/ld+json, application/json, text/plain, */*" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        // graph wrapper
+        if (data && data["@graph"] && Array.isArray(data["@graph"]) && data["@graph"].length) {
+          var main = data["@graph"].find(function (n) {
+            var t = n["@type"];
+            var ts = Array.isArray(t) ? t.join(" ") : String(t || "");
+            return /ProblemReport|Report|Issue/i.test(ts);
+          }) || data["@graph"][0];
+          render(main, fetchUrl);
+        } else {
+          render(data, fetchUrl);
+        }
+      })
+      .catch(function (e) {
+        fail("Failed to load report from " + fetchUrl + " (" + e.message + ").");
+      });
+  })();
+  </script>
+</body>
+</html>

@@ -209,3 +209,25 @@ section h2 {
 @media (prefers-reduced-motion: reduce) {
   .dev-banner { transition: none; }
 }
+
+/* Known-problem flag page */
+.problem-banner {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--warm) 40%, var(--line));
+  background: color-mix(in srgb, var(--warm) 14%, var(--paper));
+  color: var(--ink);
+  font-size: 0.98rem;
+}
+.problem-list { padding-left: 1.2rem; margin: 0.5rem 0 1.25rem; }
+.problem-list li { margin: 0.75rem 0; }
+.problem-list p { margin: 0.35rem 0 0; color: var(--mute); }
+.problem-meta { color: var(--mute); font-size: 0.88rem; font-weight: 500; }
+.block-code {
+  display: inline-block; margin-top: 0.35rem; padding: 0.35rem 0.55rem;
+  background: var(--accent-soft); border-radius: 0.35rem; font-size: 0.88rem;
+  word-break: break-all;
+}
+.prose ol { padding-left: 1.25rem; }
+.prose ol li { margin: 0.55rem 0; }
